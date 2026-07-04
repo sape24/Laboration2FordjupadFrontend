@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import type { Todo } from './types';
 import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -42,6 +43,33 @@ function App() {
     setTodos([newTodo, ...todos])
   }
 
+  const updateStatus = async (id: string, status: string) => {
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({status}),
+    });
+
+    if (!res.ok) {
+      throw new Error('Kunde inte uppdatera todo');
+    }
+
+    const updatedTodo = await res.json();
+    setTodos(todos.map((todo) => (todo._id === id ? updatedTodo : todo)));
+  };
+
+  const deleteTodo = async (id: string) => {
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!res.ok) {
+      throw new Error('Kunde inte ta bort todo');
+    }
+
+    setTodos(todos.filter((todo) => todo._id !== id));
+  }
+
   useEffect(() => {
     getTodos();
   }, []);
@@ -53,13 +81,11 @@ function App() {
     <div>
       <h1>Att göra lista</h1>
       <TodoForm addTodo={addTodo} />
-      <ul>
-        {todos.map((todo) =>(
-          <li key={todo._id}>
-            {todo.title} - {todo.status}
-          </li>
-        ))}
-      </ul>
+      <TodoList
+        todos={todos}
+        updateStatus={updateStatus}
+        deleteTodo={deleteTodo}
+      />
     </div>
   );
 }
