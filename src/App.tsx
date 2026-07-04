@@ -1,15 +1,17 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import type { Todo } from './types';
+import TodoForm from './components/TodoForm';
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const getTodos = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/todos');
+      const res = await fetch(API_URL);
 
       if (!res.ok) {
         throw new Error('Kunde inte hämta todos');
@@ -25,6 +27,21 @@ function App() {
     }
   };
 
+  const addTodo = async(title: string, description: string, status: string) => {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({title, description, status}),
+    });
+
+    if (!res.ok) {
+      throw new Error('Kunde inte lägga till todo');
+    }
+
+    const newTodo = await res.json();
+    setTodos([newTodo, ...todos])
+  }
+
   useEffect(() => {
     getTodos();
   }, []);
@@ -35,6 +52,7 @@ function App() {
   return (
     <div>
       <h1>Att göra lista</h1>
+      <TodoForm addTodo={addTodo} />
       <ul>
         {todos.map((todo) =>(
           <li key={todo._id}>
