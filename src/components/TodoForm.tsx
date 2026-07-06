@@ -5,12 +5,14 @@ interface TodoFormProps {
   addTodo: (title: string, description: string, status: string) => Promise<void>;
 }
 
+//Formulärkomponent för att skapa nya todos. Tar emot addTodo från App via props
 function TodoForm({ addTodo }: TodoFormProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('ej_paborjad');
   const [formError, setFormError] = useState('');
 
+  //validerar fälten och skickar todon vidare till App
   const handleSubmit = async () => {
     if (title.trim().length < 3) {
       setFormError('Titel måste vara minst 3 tecken');
@@ -23,6 +25,7 @@ function TodoForm({ addTodo }: TodoFormProps) {
 
     setFormError('');
 
+    //Skickar todon och rensar formuläret vid lyckad inskickning
     try {
       await addTodo(title, description, status);
       setTitle('');
@@ -51,7 +54,7 @@ function TodoForm({ addTodo }: TodoFormProps) {
         </label>
       </div>
 
-      <div>
+      <div className='form-group'>
         <label>
           Beskrivning:
           <textarea
@@ -61,7 +64,7 @@ function TodoForm({ addTodo }: TodoFormProps) {
         </label>
       </div>
 
-      <div>
+      <div className='form-group'>
         <label>
           Status:
           <select value={status} onChange={(e) => setStatus(e.target.value)}>

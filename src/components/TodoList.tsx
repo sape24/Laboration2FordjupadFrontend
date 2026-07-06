@@ -8,6 +8,7 @@ interface TodoListProps {
   deleteTodo: (id: string) => Promise<void>;
 }
 
+//Rendererar listan av todos och  skickar vidare funktionerna till varje TodoItem
 function TodoList({ todos, updateStatus, deleteTodo }: TodoListProps) {
   if (todos.length === 0) {
     return <p>Inga todos ännu.</p>;
@@ -15,6 +16,7 @@ function TodoList({ todos, updateStatus, deleteTodo }: TodoListProps) {
 
   return (
     <ul className='todo-list'>
+      {/* Skapar en TodoItem per todo med _id som unik nyckel */}
       {todos.map((todo) => (
         <TodoItem
           key={todo._id}

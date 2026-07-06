@@ -1,75 +1,36 @@
-# React + TypeScript + Vite
+# Att göra-lista (Todo List)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En single page application (SPA) byggd med react och vite. Applikationen kommunicerar med ett REST-API för att hantera en att göra lista genom ett responsivt gränssnitt med fullständig CRUD.
 
-Currently, two official plugins are available:
+## Funktioner
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Hämta och visa alla todos
+- Lägga till nya todos med validering
+- Uppdatera status (ej påbörjad, pågående och avklarad)
+- Ta bort todos
+- Hantering av laddnings och felmeddelanden
+- Responsiv design för desktop och mobil
 
-## React Compiler
+## Tekniker
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- CSS (global, komponentspecifik och inline)
+- .env
 
-## Expanding the ESLint configuration
+## Komponenter
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Komponent   | Beskrivning                                                    |
+| ----------- | ---------------------------------------------------------------|
+| App         | Huvudkomponent som sköter bland annat API-anropen.             |
+| TodoForm    | Formulär för att lägga till nya todos med validering.          |
+| TodoList    | Renderar listan av todos.                                      |
+| TodoItem    | En enskild todo med statusväljare och ta bort knapp.           |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Project Setup
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```

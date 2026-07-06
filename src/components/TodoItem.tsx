@@ -7,8 +7,10 @@ interface TodoItemProps {
   deleteTodo: (id: string) => Promise<void>;
 }
 
+//Visar en enskild todo med statusväljare och ta bort knapp
 function TodoItem({ todo, updateStatus, deleteTodo }: TodoItemProps) {
-
+  
+  //Väljer färg på statuspricken beroende på todons status
   const statusColor =
   todo.status === 'avklarad'
   ? '#38a169'
@@ -16,6 +18,7 @@ function TodoItem({ todo, updateStatus, deleteTodo }: TodoItemProps) {
   ? '#d69e2e'
   : '#a0aec0';
 
+  //Stilobjekt för den färgade statuspricken
   const dotStyle = {
     display: 'inline-block',
     width: '10px',
