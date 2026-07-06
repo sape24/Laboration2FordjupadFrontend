@@ -1,0 +1,41 @@
+.todo-item {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.todo-item h3 {
+  margin: 0 0 0.5rem;
+}
+
+.todo-item p {
+  margin: 0 0 0.75rem;
+  color: #4a5568;
+}
+
+.todo-item label {
+  margin-right: 1rem;
+}
+
+.todo-item button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  background-color: #e53e3e;
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.todo-item button:hover {
+  background-color: #c53030;
+}
+
+@media (max-width: 640px) {
+  .todo-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}

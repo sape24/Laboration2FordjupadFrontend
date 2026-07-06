@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../components/TodoForm.css'
 
 interface TodoFormProps {
   addTodo: (title: string, description: string, status: string) => Promise<void>;
@@ -34,12 +35,12 @@ function TodoForm({ addTodo }: TodoFormProps) {
   };
 
   return (
-    <div>
+    <div className='todo-form'>
       <h2>Lägg till todo</h2>
 
-      {formError && <p style={{ color: 'red' }}>{formError}</p>}
+      {formError && <p className='form-error'>{formError}</p>}
 
-      <div>
+      <div className='form-group'>
         <label>
           Titel:
           <input

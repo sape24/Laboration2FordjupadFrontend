@@ -1,5 +1,6 @@
 import type { Todo } from '../types';
 import TodoItem from '../components/TodoItem';
+import '../components/TodoList.css'
 
 interface TodoListProps {
   todos: Todo[];
@@ -13,7 +14,7 @@ function TodoList({ todos, updateStatus, deleteTodo }: TodoListProps) {
   }
 
   return (
-    <ul>
+    <ul className='todo-list'>
       {todos.map((todo) => (
         <TodoItem
           key={todo._id}

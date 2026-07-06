@@ -78,7 +78,7 @@ function App() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className='container'>
       <h1>Att göra lista</h1>
       <TodoForm addTodo={addTodo} />
       <TodoList

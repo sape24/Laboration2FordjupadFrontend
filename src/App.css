@@ -1,0 +1,16 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+h1 {
+    text-align: center;
+    color: #2d3748;
+}
+
+@media (max-width: 640px){
+    container {
+        padding: 1rem 0.75rem;
+    }
+}
